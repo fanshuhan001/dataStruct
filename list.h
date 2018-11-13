@@ -16,5 +16,5 @@ void deleteList(Node *pHead);
 Node *deleteNode(Node *pHead, dataType data);
 int isEmptyList(Node * pHead);
 void add(Node *pHead, dataType data);
-void printList(Node * pHead);
+void printStack(Node * pHead);
 Node* createList(Node *pHead);

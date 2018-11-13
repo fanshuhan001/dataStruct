@@ -9,7 +9,7 @@ int main() {
 	{
 		push(myStack, i);
 	}
-	printList(myStack);
+	printStack(myStack);
 	printf("%d\n",topElement(myStack));
 
 	for (int i = 0; i < 5; i++)
@@ -17,13 +17,13 @@ int main() {
 		pop(myStack);
 	}
 	printf("%d\n", topElement(myStack));
-	printList(myStack);
+	printStack(myStack);
 
 	releaseStack(myStack);
-	printList(myStack);
+	printStack(myStack);
 
 	freeStack(myStack);
-	printList(myStack);
+	printStack(myStack);
 
 	return 0;
 }
