@@ -47,8 +47,6 @@ void push(Stack aStack, dataType data)
 	}
 }
 
-
-
 void pop(Stack aStack) 
 {
 	if (isEmptyStack(aStack))
@@ -102,5 +100,106 @@ void printStack(Stack aStack)
 			aStack = aStack->next;
 		}
 		printf("\n");
+	}
+}
+
+arrStack createArrStack(int lenth) 
+{
+	arrStack newStack;
+
+	newStack = (arrStack)malloc(sizeof(aArrStack));
+	if (newStack == NULL)
+	{
+		perror("no memory!");
+		exit(-1);
+	}
+	
+	newStack->capacity = lenth;
+
+	newStack->stackData = (dataType*)malloc(sizeof(dataType) * lenth);
+	if (newStack->stackData == NULL)
+	{
+		perror("no memory!");
+		exit(-1);
+	}
+
+	newStack->topEle = -1; //-1表示为空栈
+
+	return newStack;
+}
+void push(arrStack aStack, dataType data) 
+{
+	//判断栈空间是否充足
+	if (aStack->topEle == aStack->capacity)
+	{
+		perror("full stack!");
+		return;
+	}
+	else
+	{
+		//aStack->topEle++; //a++,先用a运算，再进行a=a+1计算
+		aStack->stackData[++aStack->topEle] = data;//++a,先算a=a+1,再用新a值运算
+	}
+}
+
+
+void pop(arrStack aStack) 
+{
+	if (aStack->topEle == -1)
+	{
+		perror("empty stack!");
+		return;
+	}
+	else
+	{
+		aStack->topEle--;
+	}
+}
+
+int isEmptyStack(arrStack aStack) 
+{
+	return (aStack->topEle == -1);
+}
+
+void releaseStack(arrStack aStack)//清空
+{
+	aStack->topEle == -1;
+}
+
+dataType topElement(arrStack aStack)
+{
+	if (!isEmptyStack(aStack)) return aStack->stackData[aStack->topEle];
+	else perror("empty stack");
+	return -8;
+}
+
+void freeStack(arrStack aStack)
+{
+	if (aStack != NULL) 
+	{
+		free(aStack->stackData);
+		free(aStack);
+	}
+}
+
+void printStack(arrStack aStack)
+{
+	int index;
+	if (isEmptyStack(aStack)) 
+	{
+		perror("empty stack");
+	}
+	else
+	{
+	index = aStack->topEle;
+	while (index > 0) 
+	{	
+		printf("%d",(int)aStack->stackData[index]);
+		printf(" ");
+		index--;
+	}
+	printf("\n");
+	printf("capacity:%d\n", aStack->capacity);
+	printf("\n");
 	}
 }
